@@ -15,21 +15,37 @@ This Starter Kit reflects the best practices of React Native development we have
 
 React Native Starter Kit is a part of [Pepperoni](http://getpepperoni.com), a framework for kickstarting digital product development.
 
-Getting started
----------------
+Getting started by bootstrapping a new project
+----------------------------------------------
 
-### Bootstrapping a new project:
+### Install create-react-native-app, initialize new project
 
-**TODO: Steps >= 3 need rethinking / automation**
+- `yarn global add create-react-native-app`
+- `create-react-native-app AwesomeProject`
 
-1. `yarn global add create-react-native-app`
-2. `create-react-native-app AwesomeProject`
-3. `git clone https://github.com/futurice/pepperoni-crna`
-4. `cp -r pepperoni-crna/template/* AwesomeProject`
-5. Manually merge `pepperoni-crna/app.json` with `AwesomeProject/app.json`
-6. `cd AwesomeProject && yarn add react-navigation react-redux redux redux-persist styled-components`
+### Clone the pepperoni-crna repository
 
-### Setting up existing Pepperoni project
+- `git clone https://github.com/futurice/pepperoni-crna`
 
-1. `yarn install`
-2. `yarn start`
+NOTE: Before the next step, you may want to manually merge in parts of your
+project's `app.json` and `package.json` files into the template's respective
+files. This is in order to preserve project name as well as newer library
+versions.
+
+- `cp -r pepperoni-crna/template/* AwesomeProject`
+
+### Install new dependencies
+
+- `cd AwesomeProject`
+- `rm -rf node_modules/`
+- `yarn install`
+
+TODO
+----
+
+- Better initial setup experience (automated tool rather than all these manual
+  steps)
+- Including `package.json` in the `template/` directory is bad, but a necessary
+  workaround until `create-react-native-app` updates the Expo SDK to `>=v24`.
+  Until then, library versions are decided by us rather than CRNA, which is
+  an annoying maintenance burden.
