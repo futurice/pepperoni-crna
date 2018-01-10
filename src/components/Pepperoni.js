@@ -3,7 +3,7 @@ import styled from 'styled-components/native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 import PepperoniLogoAsset from '../../assets/pepperoni-logo.png';
-import PepperoniIconAsset from '../../assets/pepperoni-icon.png';
+import PepperoniIconAsset from '../../assets/icon.png';
 
 export const PepperoniLogo = styled.Image.attrs({
   source: PepperoniLogoAsset,

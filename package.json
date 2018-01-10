@@ -1,30 +1,11 @@
 {
-  "name": "PepperoniAppTemplate",
-  "author": "Futurice",
-  "description": "React Native App Starter Kit for Android and iOS",
-  "license": "MIT",
-  "homepage": "http://getpepperoni.com",
-  "bugs": "https://github.com/futurice/pepperoni-app-kit/issues",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/futurice/pepperoni-app-kit"
-  },
-  "keywords": [
-    "React Native",
-    "Starter Kit",
-    "Bitrise",
-    "Redux",
-    "Auth0"
-  ],
-  "version": "1.0.0",
+  "name": "pepperoni-crna",
+  "version": "0.1.0",
   "private": true,
   "devDependencies": {
-    "husky": "^0.14.3",
-    "jest-expo": "~19.0.0",
-    "lint-staged": "^4.0.4",
-    "prettier": "^1.6.1",
-    "react-native-scripts": "1.1.0",
-    "react-test-renderer": "16.0.0-alpha.12"
+    "jest-expo": "24.0.0",
+    "react-native-scripts": "1.8.1",
+    "react-test-renderer": "16.0.0"
   },
   "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
   "scripts": {
@@ -32,28 +13,19 @@
     "eject": "react-native-scripts eject",
     "android": "react-native-scripts android",
     "ios": "react-native-scripts ios",
-    "test": "node node_modules/jest/bin/jest.js --watch",
-    "precommit": "lint-staged",
-    "prettier": "prettier --single-quote --trailing-comma all --write \"{,!(android|ios|node_modules)/**/}*.js\""
-  },
-  "lint-staged": {
-    "*.js": [
-      "prettier --single-quote --trailing-comma all --write",
-      "git add"
-    ]
+    "test": "node node_modules/jest/bin/jest.js --watch"
   },
   "jest": {
     "preset": "jest-expo"
   },
   "dependencies": {
-    "expo": "^19.0.0",
-    "react": "16.0.0-alpha.12",
-    "react-native": "^0.46.1",
-    "react-navigation": "^1.0.0-beta.11",
+    "expo": "^24.0.0",
+    "react": "16.0.0",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-24.0.0.tar.gz",
+    "react-navigation": "^1.0.0-beta.23",
     "react-redux": "^5.0.6",
     "redux": "^3.7.2",
-    "redux-persist": "^4.8.3",
-    "redux-thunk": "^2.2.0",
-    "styled-components": "^2.1.2"
+    "redux-persist": "^5.4.0",
+    "styled-components": "^2.4.0"
   }
 }

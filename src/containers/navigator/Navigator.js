@@ -4,35 +4,34 @@ import { connect } from 'react-redux';
 
 import RootNavigator from './Stack';
 
-// Throw a helpful error message when the TabNavigator couldn't be found by name
-const missingTabNavigator = `Error while handling back button press:
+export const handleBackButton = (store) => {
+  const { navigatorState } = store.getState();
 
-Route with name 'Tabs' was not found in the root of the navigation state.
-
-If you have moved the 'Tabs' route, you need to:
-  * Edit src/modules/Navigator.js
-  * Update handleBackButton() so it knows
-    where to find your TabNavigator
-    (or make it ignore tabs altogether)`;
-
-export const handleBackButton = ({ navigatorState }, dispatch) => {
+  // Attempt to find a TabNavigator with routeName 'Tabs'
   const tabNavigatorIndex = navigatorState.routes.findIndex(
     route => route.routeName === 'Tabs',
   );
 
-  if (tabNavigatorIndex === -1) {
-    throw new Error(missingTabNavigator);
+  if (tabNavigatorIndex !== -1) {
+    // TabNavigator found, check if we are on first tab or not
+    const currentTab = navigatorState.routes[tabNavigatorIndex];
+
+    if (currentTab.index !== 0) {
+      // We are not on the first tab, send back action to react-navigation
+      store.dispatch(NavigationActions.back());
+      return true;
+    }
+  } else {
+    // Else assume root navigator behaves like a StackNavigator
+    if (navigatorState.routes.length > 1) {
+      // We are not at bottom of stack, send back action to react-navigation
+      store.dispatch(NavigationActions.back());
+      return true;
+    }
   }
 
-  const currentTab = navigatorState.routes[tabNavigatorIndex];
-  const currentStackScreen = navigatorState;
-
-  if (currentTab.index !== 0 || currentStackScreen.index !== 0) {
-    dispatch(NavigationActions.back());
-    return true;
-  }
-
-  // otherwise let OS handle the back button action
+  // We are at bottom of stack or on first tab, so we let the OS handle the back
+  // button press. Returning false here will close the app.
   return false;
 };
 

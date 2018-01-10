@@ -1,9 +1,10 @@
-import { combineReducers } from 'redux';
+import { persistCombineReducers } from 'redux-persist';
+import { persistConfig } from './persist';
 
 // ## Reducer Imports ##
 import NavigatorStateReducer from '../state/navigator';
 
-export default combineReducers({
+export default persistCombineReducers(persistConfig, {
   // ## Reducers ##
 
   // Navigator state

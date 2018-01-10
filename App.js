@@ -1,44 +1,47 @@
 import React from 'react';
-import { BackHandler, ActivityIndicator, StatusBar, View } from 'react-native';
+import { BackHandler } from 'react-native';
+import { AppLoading } from 'expo';
+
 import { Provider } from 'react-redux';
 import store from './src/redux/store';
-import persistStore from './src/utils/persist';
+import persistStore from './src/redux/persist';
+
 import Navigator, {
   handleBackButton,
 } from './src/containers/navigator/Navigator';
-import {
-  Centered,
-  FullscreenCentered,
-  AppContainer,
-} from './src/components/Layout';
 
 export default class App extends React.Component {
-  state = { rehydrated: false };
+  state = {
+    isReady: false,
+  };
 
-  componentDidMount = () => {
-    persistStore(store, () => this.setState({ rehydrated: true }));
+  startAsync = async () => {
+    // Perform any initialization tasks here while Expo shows its splash screen.
+    await persistStore(store);
+
     BackHandler.addEventListener('hardwareBackPress', () =>
-      handleBackButton(store.getState(), store.dispatch),
+      handleBackButton(store),
     );
   };
 
-  renderActivityIndicator = () =>
-    this.state.rehydrated
-      ? null
-      : <FullscreenCentered>
-          <ActivityIndicator size="large" />
-        </FullscreenCentered>;
+  onFinish = () => this.setState(() => ({ isReady: true }));
 
-  renderApp = () =>
-    this.state.rehydrated
-      ? <Provider store={store}>
-          <Navigator />
-        </Provider>
-      : null;
+  render = () => {
+    if (!this.state.isReady) {
+      return (
+        <AppLoading
+          startAsync={this.startAsync}
+          onFinish={this.onFinish}
+          onError={console.warn}
+        />
+      );
+    }
 
-  render = () =>
-    <AppContainer>
-      {this.renderActivityIndicator()}
-      {this.renderApp()}
-    </AppContainer>;
+    // Render the app only after we're done initializing
+    return (
+      <Provider store={store}>
+        <Navigator />
+      </Provider>
+    );
+  };
 }
