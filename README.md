@@ -23,9 +23,9 @@ Getting started
 
 1. `yarn global add create-react-native-app`
 2. `create-react-native-app AwesomeProject`
-3. TODO! Right now you'll have to manually overwrite files in `AwesomeProject` with files from this
-   repo.
-4. TODO! In your project, run: `yarn add react-navigation react-redux redux redux-persist styled-components`
+3. TODO! Right now you'll have to manually merge a few files in `AwesomeProject` with files from the
+   root of this repo (namely, `app.json`, ignore `package.json` for now).
+4. TODO! To install required dependencies, in your project run: `yarn add react-navigation react-redux redux redux-persist styled-components`
 
 ### Setting up existing Pepperoni project
 
