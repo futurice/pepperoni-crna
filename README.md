@@ -1,4 +1,4 @@
-![Pepperoni - Empowered by Futurice](/docs/pepperoni.png?v=2)
+![Pepperoni - Empowered by Futurice](/template/assets/pepperoni-logo.png?v=1)
 
 Futurice React Native Starter Kit
 =================================
