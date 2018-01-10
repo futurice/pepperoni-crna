@@ -1,4 +1,5 @@
 import { TabNavigator } from 'react-navigation';
+import appConfig from '../../../app.json';
 
 // ## View Imports ##
 import WelcomeView from '../views/Welcome';
@@ -6,7 +7,7 @@ import WelcomeView from '../views/Welcome';
 const TabNavigatorConfig = {
   tabBarOptions: {
     activeTintColor: 'white',
-    style: { backgroundColor: '#39babd' },
+    style: { backgroundColor: appConfig.expo.primaryColor || '#39babd' },
     scrollEnabled: true,
   },
 };
